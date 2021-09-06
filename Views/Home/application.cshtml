@@ -1,0 +1,213 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/site.css" rel="stylesheet" />
+<html>
+<head>
+    <title>ВІДПОЧИНОК</title>
+    <style>
+
+        h3 {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3 align="center">Відпочинок Мигія</h3>
+
+        <form method="post">
+
+
+            <input type="hidden" value="@ViewBag.PhoneId" name="PhoneId" />
+            <table>
+
+                <tr>
+                    <td class="form-left-title">
+                        <span style="font-weight: bold;">Замовник відпочинку</span><sup style="color: red;">*</sup>
+
+                    <td>
+                        <input type="text" placeholder="Прізвище" name="surname" class="FIO" required />
+                        <input type="text" placeholder="Ім'я" name="name" class="FIO" required />
+                        <input type="text" placeholder="По-батькові" name="middle_name" class="FIO" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="form-left-title">
+                        <span style="font-weight: bold;">Контактний телефон</span><sup style="color: red;">*</sup>
+                    <td>
+                        <input type="text" class="applay-phone" placeholder="+38 (___) ___-__-__" maxlength="19" name="Phone" id="Phone" style="width: 180px" required />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td class="form-left-title">
+                        <span style="font-weight: bold;">Електронна адреса</span><sup style="color: red;">*</sup>
+                    <td><input type="email" required name="email" style="width: 360px" /> </td>
+                </tr>
+
+                <tr>
+                    <td class="form-left-title">
+                        <span style="font-weight: bold;">Кількість днів  відпочинку</span><sup style="color: red;">*</sup>
+                    </td>
+                    <td>
+                        <select class="TextInputControl apply-courses-select" name="days" id="days">
+                            <option selected="" value="1">1 день</option>
+                            <option value="2">&nbsp;&nbsp;2 дня</option>
+                            <option value="3">&nbsp;&nbsp;3 дня </option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="form-left-title">
+                        <span style="font-weight: bold;">Місце проведения рафтингу</span><sup style="color: red;">*</sup>
+                    </td>
+                    <td>
+                        <select class="TextInputControl apply-courses-select" name="restplace" id="restplace">
+                            <option selected="" value="mugia">Південний Буг (Мигія)</option>
+                            <option value="desna">&nbsp;&nbsp;Десна</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="form-left-title">
+                        <span style="font-weight: bold;">Дата виїзду з Києва</span><sup style="color: red;">*</sup>
+                    <td><input type="date" class="startDate" name="startDate" required /> </td>
+                </tr>
+
+                <tr>
+                    <td class="form-left-title" style="">
+                        <span style="font-weight: bold;">Кількість відпочиваючих</span><sup style="color: red;">*</sup>
+                    <td>
+                        <input type="number" id="tnumber" class="number-tourists" name="touristnumber" style="width: 85px; " required />
+                    </td>
+
+                </tr>
+
+
+                <fieldset>
+                    <table id="clientTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Прізвище та ім'я</td>
+                                <td>телефон</td>
+                                <td>Трансфер (вибрати)</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+
+                        <tr id="tablerow0">
+                            <td>
+                                <div class="editor-field">
+                                    <input class="text-box single-line" name="ClientName[0]" type="text" maxlength="140" value="" required="required" style="width: 250px;" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="editor-field">
+                                    <input class="applay-phone" name="KlientPhone[0]" type="text" placeholder="+38 (___) ___-__-__" required />
+                                </div>
+                            </td>
+
+                            <td>
+                                <select class="TextInputControl apply-courses-select" name="transfer" id="transfer">
+                                    <option selected="" value="foot">Своїм ходом</option>
+                                    <option value="bus">&nbsp;&nbsp;Автобус із Києва</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="removeTr(0);">Delete</button>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <p>
+                        <button id="addButton" type="submit" class="btn btn-primary">Додати туриста</button>
+                    </p>           
+
+                        <tr>
+                            <td class="form-left-title">
+                                <span style="font-weight: bold;">Місце проживання</span><sup style="color: red;">*</sup>
+                            <td>
+                                <input type="text" name="touristnumber" style="width: 85px; " required readonly="readonly" value="палатка" />
+                            </td>
+
+                        </tr>
+                        <p></p>
+
+                        <tr>
+                            <table id="grill_menu_Table" class="table table-bordered" style="width: 290px;">
+                                <thead>
+                                    <tr>
+                                        <td width="220">Гриль-меню</td>
+                                        <td width="50">Кількість</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tr id="table2row0">
+                                    <td>
+                                        <select class="grill_menu_select" name="grill_menu[0]" id="grill_menu" style="width: 220px;">
+                                            <option selected="" value="0"></option>
+                                            <option value="1">&nbsp;&nbsp;шашлик зі свинини</option>
+                                            <option value="2">&nbsp;&nbsp;курячі крильця</option>
+                                            <option value="3">&nbsp;&nbsp;ковбаски-гриль</option>
+                                            <option value="4">&nbsp;&nbsp;лаваш з сиром сулугуні</option>
+                                            <option value="5">&nbsp;&nbsp;овочі-гриль</option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <div class="editor-field">
+                                            <input type="number" id="grill_number" name="grill_number[0]" style="height: 25px;width: 50px; " />
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <button type="button" class="btn btn-primary" onclick="removeBt(0);" style="font-weight: bold;">Х</button>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p>
+                                <button id="addButtongrill" type="submit" class="btn btn-primary">Додати послугу</button>
+                            </p>
+                        </tr>
+                    </table>
+          
+            <p></p>
+            <p><span style="font-weight: bold;">КОМЕНТАРІ</p>
+
+            <p><textarea name="comment" id="commment" style="width: 585px; "></textarea></p>
+            <input type="hidden" id="pasportFio" name="pasportFio" value="" />
+            <input type="hidden" id="Datatoserver" name="Datatoserver" value="" />
+            <input type="hidden" id="Data2" name="Data2" value="" />
+            <div class="g-recaptcha" data-callback="imNotARobot" data-sitekey="6LfkMd4ZAAAAAA1wvtf3CxyBgN3krlcJWD_gEJfx"></div>
+
+
+
+            <div id="html_element"></div>
+            <br>
+            <p>
+                <button type="submit" id="btn" class="btn btn-primary" onclick="AddToBase();">ОФОРМИТЬ ЗАЯВКУ</button>
+            </p>
+
+
+        </form>
+    </div>
+</body>
+
+
+
+
+
+
+</html>
+
